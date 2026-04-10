@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlipCard | The Ultimate Memory Challenge</title>
+    <meta name="description" content="Download FlipCard, the ultimate card matching memory game with multiple themes. Play solo or challenge a friend in 2-player mode!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brandDark: '#0a0a0f',
+                        brandBlue: '#1A1A2E',
+                        accentCyan: '#00E5FF',
+                        accentBlue: '#448AFF',
+                        accentPurple: '#E040FB',
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'radial-gradient(circle at top right, rgba(68,138,255,0.15), transparent 40%), radial-gradient(circle at bottom left, rgba(224,64,251,0.15), transparent 40%)',
+                        'card-glass': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-[#0b0c10] text-gray-200 overflow-x-hidden antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="assets/logo.png" alt="FlipCard Logo" class="h-10 w-10 object-contain rounded-lg shadow-lg">
+                <span class="font-display font-bold text-2xl tracking-wide text-white">FLIPCARD</span>
+            </div>
+            <div>
+                <a href="#download" class="hidden sm:inline-block bg-white text-black font-semibold px-6 py-2.5 rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">
+                    Get the App
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brandDark">
+        <div class="absolute inset-0 bg-hero-gradient"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accentBlue/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10 w-full">
+            
+            <!-- Hero Text -->
+            <div class="text-center lg:text-left reveal-left">
+                <div class="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-6">
+                    <span class="bg-gradient-to-r from-accentCyan to-accentBlue bg-clip-text text-transparent font-semibold text-sm tracking-widest uppercase">Now Available on Android</span>
+                </div>
+                <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight mb-6">
+                    Master Your <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentCyan via-accentBlue to-accentPurple">Memory.</span>
+                </h1>
+                <p class="text-lg text-gray-400 mb-10 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                    Test your focus, challenge your friends, and unlock incredible pop-culture themes in the ultimate visually stunning memory card game.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <!-- Google Play Badge Mockup -->
+                    <a href="#download" class="group flex items-center justify-center gap-3 bg-white text-black px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)]">
+                        <svg class="w-6 h-6" viewBox="0 0 512 512" fill="currentColor">
+                           <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+                        </svg>
+                        Download Now
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Visuals (Floating Cards) -->
+            <div class="relative h-[500px] hidden md:block reveal-right">
+                <div class="absolute right-10 top-10 w-48 h-72 rounded-2xl border-2 border-white/10 shadow-2xl overflow-hidden transform rotate-6 animate-float-slow z-20">
+                    <img src="assets/squidgame/cardcover.png" class="w-full h-full object-cover" alt="Squid Game Theme" onerror="this.src='https://images.unsplash.com/photo-1636254876939-f8319fdb4c34?q=80&w=400&fit=crop'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                        <span class="text-white font-bold tracking-wider text-sm">SQUID GAME</span>
+                    </div>
+                </div>
+                
+                <div class="absolute right-40 top-32 w-56 h-80 rounded-2xl border-2 border-white/10 shadow-[0_0_50px_rgba(68,138,255,0.3)] overflow-hidden transform -rotate-12 animate-float-medium z-10 backdrop-blur-md bg-white/5">
+                    <img src="assets/minecraft/cardcover.png" class="w-full h-full object-cover" alt="Minecraft Theme" onerror="this.src='https://images.unsplash.com/photo-1606564619714-fae729a67462?q=80&w=400&fit=crop'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                        <span class="text-white font-bold tracking-wider text-sm">MINECRAFT</span>
+                    </div>
+                </div>
+
+                <div class="absolute right-0 bottom-10 w-40 h-60 rounded-2xl border-2 border-white/10 shadow-2xl overflow-hidden transform rotate-12 animate-float-fast z-30">
+                    <img src="assets/logo.png" class="w-full h-full object-cover bg-[#000307] p-4" alt="Logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-24 bg-brandDark relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal-up">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Why Play FlipCard?</h2>
+                <p class="text-gray-400 font-light max-w-2xl mx-auto">Not just another memory game. We built FlipCard with stunning visuals and engaging modes.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-card-glass backdrop-blur-lg border border-white/5 p-8 rounded-2xl hover:border-accentCyan/50 transition-colors duration-500 reveal-up" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 rounded-xl bg-accentCyan/20 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-accentCyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Solo Campaign</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Challenge yourself against the clock and beat your own high scores in our focused single-player mode.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-card-glass backdrop-blur-lg border border-white/5 p-8 rounded-2xl hover:border-accentPurple/50 transition-colors duration-500 reveal-up" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 rounded-xl bg-accentPurple/20 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-accentPurple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">2-Player Battles</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Go head-to-head with a friend on the same device. Memory takes an intense competitive turn.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-card-glass backdrop-blur-lg border border-white/5 p-8 rounded-2xl hover:border-accentBlue/50 transition-colors duration-500 reveal-up" style="transition-delay: 300ms;">
+                    <div class="w-14 h-14 rounded-xl bg-accentBlue/20 flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-accentBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Epic Themes</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">From neon cyberpunk vibes to your favorite pop culture icons, unlock beautifully crafted card decks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Themes Showcase -->
+    <section class="py-24 bg-[#0a0a0f] relative border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal-up">
+                <div>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Discover Themes</h2>
+                    <p class="text-gray-400 font-light">Cards that look so good you won't want to flip them.</p>
+                </div>
+            </div>
+
+            <!-- Horizontal Scroll Container for Themes -->
+            <div class="flex overflow-x-auto pb-10 gap-6 snap-x hide-scrollbar reveal-up">
+                
+                <!-- Theme Card 1 -->
+                <div class="flex-none w-64 md:w-80 group relative rounded-2xl overflow-hidden snap-center cursor-pointer">
+                    <div class="aspect-[2/3] w-full">
+                        <img src="assets/squidgame/cardcover.png" alt="Squid Game Theme" onerror="this.src='https://images.unsplash.com/photo-1636254876939-f8319fdb4c34?q=80&w=400&fit=crop'" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                        <p class="text-accentCyan text-xs font-bold tracking-widest uppercase mb-1">Unlockable</p>
+                        <h3 class="text-2xl font-bold text-white">Squid Game</h3>
+                    </div>
+                </div>
+
+                <!-- Theme Card 2 -->
+                <div class="flex-none w-64 md:w-80 group relative rounded-2xl overflow-hidden snap-center cursor-pointer">
+                    <div class="aspect-[2/3] w-full">
+                        <img src="assets/minecraft/cardcover.png" alt="Minecraft Theme" onerror="this.src='https://images.unsplash.com/photo-1606564619714-fae729a67462?q=80&w=400&fit=crop'" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                        <p class="text-accentBlue text-xs font-bold tracking-widest uppercase mb-1">Unlockable</p>
+                        <h3 class="text-2xl font-bold text-white">Minecraft</h3>
+                    </div>
+                </div>
+
+                <!-- Theme Card 3 -->
+                <div class="flex-none w-64 md:w-80 group relative rounded-2xl overflow-hidden snap-center cursor-pointer">
+                    <div class="aspect-[2/3] w-full">
+                        <img src="assets/strangerthings/cardcover.png" alt="Stranger Things Theme" onerror="this.src='https://images.unsplash.com/photo-1620336655055-088d06e36bf0?q=80&w=400&fit=crop'" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                        <p class="text-accentPurple text-xs font-bold tracking-widest uppercase mb-1">Fan Favorite</p>
+                        <h3 class="text-2xl font-bold text-white">Stranger Things</h3>
+                    </div>
+                </div>
+                
+                <!-- Theme Card 4 -->
+                <div class="flex-none w-64 md:w-80 group relative rounded-2xl overflow-hidden snap-center cursor-pointer">
+                    <div class="aspect-[2/3] w-full">
+                        <img src="assets/aliceinborderland/cardcover.png" alt="Alice in Borderland Theme" onerror="this.src='https://images.unsplash.com/photo-1518605368461-1e1e38ce8058?q=80&w=400&fit=crop'" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                        <p class="text-accentCyan text-xs font-bold tracking-widest uppercase mb-1">New Arrivals</p>
+                        <h3 class="text-2xl font-bold text-white">Alice in Borderland</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA -->
+    <section id="download" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-brandDark to-[#05050a]"></div>
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            <h2 class="font-display text-4xl md:text-6xl font-bold mb-6">Ready to Flip?</h2>
+            <p class="text-xl text-gray-400 font-light mb-10">Download FlipCard today and experience the ultimate brain-training challenge.</p>
+            <button class="bg-gradient-to-r from-accentCyan to-accentBlue text-black font-bold text-lg px-10 py-5 rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_10px_40px_rgba(0,229,255,0.4)] hover:shadow-[0_10px_50px_rgba(0,229,255,0.6)]">
+                Download on Google Play
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#05050a] border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3 opacity-50">
+                <img src="assets/logo.png" alt="Logo" class="w-8 h-8 rounded">
+                <span class="font-display font-bold tracking-widest">FLIPCARD</span>
+            </div>
+            <div class="text-gray-500 text-sm">
+                &copy; 2026 Kalios Studio. All rights reserved.
+            </div>
+            <div class="flex gap-6 text-sm text-gray-500">
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-colors">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

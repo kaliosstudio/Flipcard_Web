@@ -1,0 +1,81 @@
+/* Custom Utilities & Animations */
+
+/* Hide native scrollbar but allow scrolling */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Float Animations for Hero Cards */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(6deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(4deg);
+    }
+}
+
+@keyframes float-reverse {
+    0%, 100% {
+        transform: translateY(0px) rotate(-12deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(-15deg);
+    }
+}
+
+@keyframes float-fast {
+    0%, 100% {
+        transform: translateY(0px) rotate(12deg);
+    }
+    50% {
+        transform: translateY(-25px) rotate(10deg);
+    }
+}
+
+.animate-float-slow {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+    animation: float-reverse 5s ease-in-out infinite;
+}
+
+.animate-float-fast {
+    animation: float-fast 4s ease-in-out infinite;
+}
+
+/* Scroll Reveal Classes (Handled by JS) */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-active {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Navbar Scrolled State */
+.nav-scrolled {
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
